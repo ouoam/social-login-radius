@@ -18,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/ouoam/social-login-radius/issues"
   },
-  "homepage": "https://github.com/ouoam/social-login-radius#readme"
+  "homepage": "https://github.com/ouoam/social-login-radius#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mongojs": "^2.4.0"
+  }
 }
