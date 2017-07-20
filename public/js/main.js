@@ -13,26 +13,19 @@ function onSuccess(googleUser) {
     document.getElementById('error_text').innerHTML = '';
 
     var profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Full Name: ' + profile.getName());
-    console.log('Given Name: ' + profile.getGivenName());
-    console.log('Family Name: ' + profile.getFamilyName());
     console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 
     var id_token = googleUser.getAuthResponse().id_token;
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/newtoken');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function () {
-        console.log('Signed in as: ' + xhr.responseText);
-
+        document.getElementById('info_text').innerHTML = 'Signed in as: ' + profile.getName();
         document.getElementById('login__username').value = profile.getEmail().split('@')[0];
+
         at_hash(googleUser.getAuthResponse().access_token).then(function (digest) {
-            console.log(digest);
             document.getElementById('login__password').value = digest;
         });
-
     };
     xhr.send('idtoken=' + id_token);
 }
@@ -42,7 +35,6 @@ function onFailure(error) {
     if (error.error == 'popup_closed_by_user') {
         document.getElementById('error_text').innerHTML = '';
     } else if (typeof (error.accountDomain) == 'undefined' || error.accountDomain != 'pccpl.ac.th') {
-        console.log('E-mail domain error');
         document.getElementById('error_text').innerHTML = 'Use only PCCPL E-Mail!!!';
     }
 }
