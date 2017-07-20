@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="edit-from" content="https://codepen.io/marcobiedermann/pen/Fybpf">
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="http://192.168.100.110/css/style.css">
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 
     <title>Firewall Authentication</title>
@@ -17,16 +17,20 @@
 
     <div class="grid">
 
-        <form action="https://httpbin.org/post" method="POST" class="form login">
+        <form action="%%AUTH_POST_URL%%" method="POST" class="form login">
+
+            <input type="hidden" name="%%REDIRID%%" value="%%PROTURI%%">
+            <input type="hidden" name="%%MAGICID%%" value="%%MAGICVAL%%">
+            <input type="hidden" name="%%METHODID%%" value="%%METHODVAL%%">
 
             <div class="form__field">
                 <label for="login__username"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use></svg><span class="hidden">Username</span></label>
-                <input id="login__username" type="text" name="username" class="form__input" placeholder="Username" required>
+                <input id="login__username" type="text" name="%%USERNAMEID%%" class="form__input" placeholder="Username" required>
             </div>
 
             <div class="form__field">
                 <label for="login__password"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use></svg><span class="hidden">Password</span></label>
-                <input id="login__password" type="password" name="password" class="form__input" placeholder="Password" required>
+                <input id="login__password" type="password" name="%%PASSWORDID%%" class="form__input" placeholder="Password" required>
             </div>
 
             <div class="form__field">
@@ -38,7 +42,7 @@
             </div>
 
             <div class="form__field">
-                <input type="submit" value="Sign In">
+                <input type="submit" value="Continue">
             </div>
 
         </form>
@@ -57,7 +61,7 @@
         </symbol>
     </svg>
 
-    <script src="js/main.js" async defer></script>
+    <script src="http://192.168.100.110/js/main.js" async defer></script>
     <script src="//apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 
 </body>

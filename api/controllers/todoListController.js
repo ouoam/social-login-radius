@@ -1,54 +1,49 @@
 'use strict';
 
 
-var mongoose = require('mongoose'),
+var mongoose = require('mongoose');
+
+/*
     Task = mongoose.model('Tasks');
 
-exports.list_all_tasks = function(req, res) {
     Task.find({}, function(err, task) {
-        if (err)
-            res.send(err);
-        res.json(task);
-    });
-};
 
-
-exports.create_a_task = function(req, res) {
     var new_task = new Task(req.body);
     new_task.save(function(err, task) {
-        if (err)
-            res.send(err);
-        res.json(task);
-    });
-};
 
-
-exports.read_a_task = function(req, res) {
     Task.findById(req.params.taskId, function(err, task) {
-        if (err)
-            res.send(err);
-        res.json(task);
-    });
-};
 
-
-exports.update_a_task = function(req, res) {
     Task.findOneAndUpdate({ _id: req.params.taskId }, req.body, { new: true }, function(err, task) {
-        if (err)
-            res.send(err);
-        res.json(task);
-    });
-};
 
+    Task.remove({_id: req.params.taskId}, function(err, task) {
 
-exports.delete_a_task = function(req, res) {
+*/
 
+var User = mongoose.model('User');
+var googleCheckToken = require('../../googleToken');
 
-    Task.remove({
-        _id: req.params.taskId
-    }, function(err, task) {
-        if (err)
-            res.send(err);
-        res.json({ message: 'Task successfully deleted' });
+exports.update_user = function(req, res) {
+    googleCheckToken(req.body['idtoken'], function(data) {
+        User.find({ sub: data['sub'] }, function(err, user) {
+            if (err)
+                res.send(err);
+
+            if (user[0] == null) {
+                var new_user = new User(data);
+                new_user.save(function(err, user) {
+                    if (err)
+                        res.send(err);
+                    res.json({ status: 'ok' });
+                });
+            } else {
+                User.findOneAndUpdate({ _id: user[0]['_id'] }, data, { new: true },
+                    function(err, user) {
+                        if (err)
+                            res.send(err);
+                        res.json({ status: 'ok' });
+                    }
+                );
+            }
+        });
     });
 };
