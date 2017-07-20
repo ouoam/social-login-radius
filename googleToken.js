@@ -11,10 +11,17 @@ module.exports = function(token) {
         // Or, if multiple clients access the backend:
         //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3],
         function(e, login) {
-            var payload = login.getPayload();
-            var userid = payload['sub'];
-            var domain = payload['hd'];
-            console.log(payload);
+            if (e) {
+                console.log(e);
+            } else {
+                var payload = login.getPayload();
+                var userid = payload['sub'];
+
+                if (payload['hd'] != config.host_domain) {
+
+                }
+                console.log(payload);
+            }
         }
     );
 }

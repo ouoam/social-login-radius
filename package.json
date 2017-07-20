@@ -1,32 +1,31 @@
 {
-  "name": "social-login-radius",
-  "version": "0.0.1",
-  "description": "Radius server with social login for internet authen",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ouoam/social-login-radius.git"
-  },
-  "keywords": [
-    "internet-login"
-  ],
-  "author": "Poompathai Chansriwong",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ouoam/social-login-radius/issues"
-  },
-  "homepage": "https://github.com/ouoam/social-login-radius#readme",
-  "dependencies": {
-    "body-parser": "^1.17.2",
-    "express": "^4.15.3",
-    "google-auth-library": "^0.10.0",
-    "mongoose": "^4.11.3"
-  },
-  "devDependencies": {
-    "nodemon": "^1.11.0"
-  }
+    "name": "social-login-radius",
+    "version": "0.0.1",
+    "description": "Radius server with social login for internet authen",
+    "main": "index.js",
+    "scripts": {
+        "test": "nodemon server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ouoam/social-login-radius.git"
+    },
+    "keywords": [
+        "internet-login"
+    ],
+    "author": "Poompathai Chansriwong",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ouoam/social-login-radius/issues"
+    },
+    "homepage": "https://github.com/ouoam/social-login-radius#readme",
+    "dependencies": {
+        "body-parser": "^1.17.2",
+        "express": "^4.15.3",
+        "google-auth-library": "^0.10.0",
+        "mongoose": "^4.11.3"
+    },
+    "devDependencies": {
+        "nodemon": "^1.11.0"
+    }
 }
