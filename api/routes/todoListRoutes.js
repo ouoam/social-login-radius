@@ -1,4 +1,5 @@
 'use strict';
+var googleCheckToken = require('../../googleToken');
 module.exports = function (app) {
     var todoList = require('../controllers/todoListController');
 
@@ -15,5 +16,8 @@ module.exports = function (app) {
         .delete(todoList.delete_a_task);
 
     app.route('/newtoken')
-        .put(todoList.read_a_task)
+        .post(function (req, res) {
+            googleCheckToken(req.body['idtoken']);
+            res.json(req.body);
+        })
 };
